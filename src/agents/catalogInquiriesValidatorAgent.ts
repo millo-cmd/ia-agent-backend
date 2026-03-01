@@ -8,9 +8,11 @@ export const consultasCatalogosValidatorAgent = async (userInput: string, perfil
                  
                  REGLAS:
                  1. Analiza el mensaje: "${userInput}".
-                 2. Si el usuario dio su presupuesto aproximado, nuevo o usado, descuento de empleado, preferencia de tipo de carro, actualiza la ficha.
-                 3. Si faltan datos, pon "datosCompletos": false.
-                 4. Solo si ya tienes (presupuesto aproximado, nuevo o usado, descuento de empleado, preferencia de tipo de carro), pon "datosCompletos": true.`,
+                 2. Extrae la información si el usuario menciona presupuesto aproximado, si busca auto nuevo o usado, si tiene descuento de empleado, o su preferencia de tipo de carro.
+                 3. Si faltan datos en la ficha técnica (presupuesto, nuevo/usado, descuento empleado, preferencia), pon "datosCompletos": false y genera en "preguntaAlUsuario" una pregunta amable para solicitar los datos que faltan al usuario.
+                 4. Solo si ya tienes los 4 datos, pon "datosCompletos": true.
+                 5. Si el usuario menciona alguna otra cosa que no tiene nada que ver con el catalogo de autos, responde, "No estoy seguro de cómo ayudarte con eso, ¿podrías repetir tu duda?
+                 6. Si el usuario menciona algo sobre autos voladores, autos que no existen, etc, responde, "No estoy seguro de cómo ayudarte con eso, ¿podrías repetir tu duda?"`,
         prompt: userInput,
         output: { schema: validadorCatalogoInputSchema }
     });
